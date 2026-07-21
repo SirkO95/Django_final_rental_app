@@ -1,0 +1,215 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:#f6f8fb;
+
+    color:#222;
+
+}
+
+.navbar{
+
+    background:#1f2937!important;
+
+    padding:15px 0;
+
+}
+
+.navbar-brand{
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+.nav-link{
+
+    margin-left:10px;
+
+    font-weight:500;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:#ffc107!important;
+
+}
+
+.btn{
+
+    border-radius:10px;
+
+    padding:10px 22px;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.section-title{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    margin-bottom:40px;
+
+}
+
+.card{
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card img{
+
+    height:240px;
+
+    object-fit:cover;
+
+}
+
+.footer{
+
+    background:#1f2937;
+
+    color:white;
+
+    padding:70px 0 30px;
+
+}
+
+.footer a{
+
+    color:#ddd;
+
+    text-decoration:none;
+
+}
+
+.footer a:hover{
+
+    color:#ffc107;
+
+}
+
+.hero{
+
+    padding:120px 0;
+
+    text-align:center;
+
+}
+
+.hero h1{
+
+    font-size:58px;
+
+    font-weight:700;
+
+}
+
+.hero p{
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    color:#666;
+
+}
+
+.search-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    margin-top:40px;
+
+}
+
+.badge-city{
+
+    background:#fff;
+
+    border-radius:30px;
+
+    padding:12px 24px;
+
+    margin:8px;
+
+    display:inline-block;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.badge-city:hover{
+
+    background:#ffc107;
+
+    cursor:pointer;
+
+}
+
+.feature-icon{
+
+    width:80px;
+
+    height:80px;
+
+    background:#ffc107;
+
+    color:#000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:35px;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}

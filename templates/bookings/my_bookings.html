@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h2 class="mb-4">
+
+        My Bookings
+
+    </h2>
+
+    {% if bookings %}
+
+        <table class="table table-striped">
+
+            <thead>
+
+            <tr>
+
+                <th>Property</th>
+
+                <th>Dates</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for booking in bookings %}
+
+                <tr>
+
+                    <td>
+
+                        {{ booking.listing.title }}
+
+                    </td>
+
+                    <td>
+
+                        {{ booking.start_date }}
+
+                        →
+
+                        {{ booking.end_date }}
+
+                    </td>
+
+                    <td>
+
+                        {{ booking.get_status_display }}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% else %}
+
+        <div class="alert alert-info">
+
+            You don't have any bookings yet.
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

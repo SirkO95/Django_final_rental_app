@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Leave Review{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-7">
+
+            <div class="card shadow border-0">
+
+                <div class="card-body p-5">
+
+                    <h2 class="fw-bold mb-4">
+                        Leave a Review
+                    </h2>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Rating
+                            </label>
+
+                            <select
+                                    name="rating"
+                                    class="form-select">
+
+                                <option value="5">★★★★★</option>
+                                <option value="4">★★★★☆</option>
+                                <option value="3">★★★☆☆</option>
+                                <option value="2">★★☆☆☆</option>
+                                <option value="1">★☆☆☆☆</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                Comment
+                            </label>
+
+                            <textarea
+                                    name="comment"
+                                    rows="5"
+                                    class="form-control"></textarea>
+
+                        </div>
+
+                        <button
+                                class="btn btn-warning btn-lg">
+
+                            Submit Review
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

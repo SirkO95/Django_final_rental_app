@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Property{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card shadow">
+
+                <div class="card-body p-4">
+
+                    <h2 class="mb-4">
+
+                        Book "{{ listing.title }}"
+
+                    </h2>
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Start Date
+                            </label>
+
+                            <input
+                                    type="date"
+                                    name="start_date"
+                                    class="form-control"
+                                    required>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label">
+                                End Date
+                            </label>
+
+                            <input
+                                    type="date"
+                                    name="end_date"
+                                    class="form-control"
+                                    required>
+
+                        </div>
+
+                        <button class="btn btn-warning">
+
+                            Confirm Booking
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

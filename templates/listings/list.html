@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block title %}Properties{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <h1 class="fw-bold text-center mb-5">
+        Browse Properties
+    </h1>
+
+    <!-- SEARCH -->
+
+    <div class="card shadow border-0 mb-5">
+
+        <div class="card-body">
+
+            <form method="GET">
+
+                <div class="row g-3">
+
+                    <div class="col-md-3">
+
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Keyword"
+                            value="{{ request.GET.search }}">
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <input
+                            type="text"
+                            name="location"
+                            class="form-control"
+                            placeholder="City"
+                            value="{{ request.GET.location }}">
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <input
+                            type="number"
+                            name="min_price"
+                            class="form-control"
+                            placeholder="Min €"
+                            value="{{ request.GET.min_price }}">
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <input
+                            type="number"
+                            name="max_price"
+                            class="form-control"
+                            placeholder="Max €"
+                            value="{{ request.GET.max_price }}">
+
+                    </div>
+
+                    <div class="col-md-1">
+
+                        <input
+                            type="number"
+                            name="rooms"
+                            class="form-control"
+                            placeholder="Rooms"
+                            value="{{ request.GET.rooms }}">
+
+                    </div>
+
+                    <div class="col-md-2">
+
+                        <select
+                            name="type"
+                            class="form-select">
+
+                            <option value="">
+                                All Types
+                            </option>
+
+                            <option value="apartment"
+                            {% if request.GET.type == "apartment" %}selected{% endif %}>
+                                Apartment
+                            </option>
+
+                            <option value="house"
+                            {% if request.GET.type == "house" %}selected{% endif %}>
+                                House
+                            </option>
+
+                            <option value="studio"
+                            {% if request.GET.type == "studio" %}selected{% endif %}>
+                                Studio
+                            </option>
+
+                            <option value="room"
+                            {% if request.GET.type == "room" %}selected{% endif %}>
+                                Room
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-4">
+
+                    <button class="btn btn-warning btn-lg">
+
+                        <i class="bi bi-search"></i>
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- RESULTS -->
+
+    <div class="row">
+
+        {% for listing in listings %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card shadow h-100">
+
+                {% if listing.image %}
+
+                    <img
+                        src="{{ listing.image.url }}"
+                        class="card-img-top"
+                        style="height:240px;object-fit:cover;">
+
+                {% else %}
+
+                    <img
+                        src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                        class="card-img-top"
+                        style="height:240px;object-fit:cover;">
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h5 class="fw-bold">
+
+                        {{ listing.title }}
+
+                    </h5>
+
+                    <p class="text-muted">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        {{ listing.location }}
+
+                    </p>
+
+                    <p>
+
+                        <i class="bi bi-house-door"></i>
+
+                        {{ listing.get_housing_type_display }}
+
+                    </p>
+
+                    <p>
+
+                        <i class="bi bi-door-open"></i>
+
+                        {{ listing.rooms }} rooms
+
+                    </p>
+
+                    <h4 class="text-warning">
+
+                        €{{ listing.price }}
+
+                    </h4>
+
+                </div>
+
+                <div class="card-footer bg-white border-0">
+
+                    <a
+                        href="{% url 'listing_detail' listing.id %}"
+                        class="btn btn-dark w-100">
+
+                        View Details
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="alert alert-info text-center">
+
+                <h4>
+
+                    No properties found.
+
+                </h4>
+
+                <p>
+
+                    Try changing your search filters.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

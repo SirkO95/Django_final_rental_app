@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Rental Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>
+            Find Your Perfect Home in Germany
+        </h1>
+
+        <p>
+            Apartments, houses and studios in Berlin, Munich, Hamburg and other cities.
+        </p>
+
+        <div class="search-box">
+
+            <form method="GET" action="{% url 'listing_list' %}">
+
+                <div class="row g-3">
+
+                    <div class="col-md-4">
+                        <input
+                            type="text"
+                            name="location"
+                            class="form-control form-control-lg"
+                            placeholder="City">
+                    </div>
+
+                    <div class="col-md-3">
+                        <input
+                            type="number"
+                            name="min_price"
+                            class="form-control form-control-lg"
+                            placeholder="Min price">
+                    </div>
+
+                    <div class="col-md-3">
+                        <input
+                            type="number"
+                            name="rooms"
+                            class="form-control form-control-lg"
+                            placeholder="Rooms">
+                    </div>
+
+                    <div class="col-md-2">
+                        <button class="btn btn-warning w-100 h-100">
+                            <i class="bi bi-search"></i>
+                            Search
+                        </button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- POPULAR CITIES -->
+
+<section class="py-5">
+
+    <div class="container text-center">
+
+        <h2 class="section-title">
+            Popular Cities
+        </h2>
+
+        <span class="badge-city">Berlin</span>
+        <span class="badge-city">Munich</span>
+        <span class="badge-city">Hamburg</span>
+        <span class="badge-city">Cologne</span>
+        <span class="badge-city">Frankfurt</span>
+
+    </div>
+
+</section>
+
+<!-- LATEST LISTINGS -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <h2 class="section-title text-center">
+            Latest Properties
+        </h2>
+
+        <div class="row">
+
+            {% for listing in latest %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card h-100 shadow">
+
+                    {% if listing.image %}
+                        <img
+                            src="{{ listing.image.url }}"
+                            class="card-img-top"
+                            style="height:240px;object-fit:cover;">
+                    {% else %}
+                        <img
+                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                            class="card-img-top"
+                            style="height:240px;object-fit:cover;">
+                    {% endif %}
+
+                    <div class="card-body">
+
+                        <h5>{{ listing.title }}</h5>
+
+                        <p class="text-muted">
+                            <i class="bi bi-geo-alt"></i>
+                            {{ listing.location }}
+                        </p>
+
+                        <p>
+                            <i class="bi bi-door-open"></i>
+                            {{ listing.rooms }} rooms
+                        </p>
+
+                        <h4 class="text-warning">
+                            €{{ listing.price }}
+                        </h4>
+
+                    </div>
+
+                    <div class="card-footer bg-white border-0">
+
+                        <a
+                            href="{% url 'listing_detail' listing.id %}"
+                            class="btn btn-dark w-100">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="alert alert-info text-center">
+
+                    No properties have been added yet.
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- POPULAR PROPERTIES -->
+
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <h2 class="section-title text-center">
+            Most Popular
+        </h2>
+
+        <div class="row">
+
+            {% for listing in popular %}
+
+            <div class="col-lg-4 col-md-6 mb-4">
+
+                <div class="card h-100 shadow-sm">
+
+                    {% if listing.image %}
+                        <img
+                            src="{{ listing.image.url }}"
+                            class="card-img-top"
+                            style="height:220px;object-fit:cover;">
+                    {% else %}
+                        <img
+                            src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85"
+                            class="card-img-top"
+                            style="height:220px;object-fit:cover;">
+                    {% endif %}
+
+                    <div class="card-body">
+
+                        <h5>{{ listing.title }}</h5>
+
+                        <p class="text-muted">
+                            {{ listing.location }}
+                        </p>
+
+                        <p>
+                            👁 {{ listing.views_count }} views
+                        </p>
+
+                        <a
+                            href="{% url 'listing_detail' listing.id %}"
+                            class="btn btn-outline-dark w-100">
+
+                            View Property
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="alert alert-secondary text-center">
+
+                    No popular properties yet.
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WHY US -->
+
+<section class="py-5 bg-white">
+
+    <div class="container">
+
+        <h2 class="section-title text-center">
+            Why Choose Us
+        </h2>
+
+        <div class="row text-center">
+
+            <div class="col-md-3">
+
+                <div class="feature-icon">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+
+                <h5>Verified Listings</h5>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-icon">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+
+                <h5>Easy Booking</h5>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-icon">
+                    <i class="bi bi-star"></i>
+                </div>
+
+                <h5>Top Reviews</h5>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <div class="feature-icon">
+                    <i class="bi bi-lightning-charge"></i>
+                </div>
+
+                <h5>Fast Search</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
